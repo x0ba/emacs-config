@@ -1,0 +1,15 @@
+#+title: Doom Emacs Configuration
+#+author: x0ba
+#+html: <a href="https://www.gnu.org/software/emacs/emacs.html#Releases"><img src="https://img.shields.io/badge/Emacs-29.1-blueviolet.svg?style=flat-square&logo=GNU%20Emacs&logoColor=white"></a>
+#+html: <a href="https://orgmode.org"><img src="https://img.shields.io/badge/Org-literate%20config-%2377aa99?style=flat-square&logo=org&logoColor=white"></a>
+
+Here you may find my config. There is only one significant file:
++ =config.org=, my configuration file --- see the [[https://tecosaur.github.io/emacs-config/config.html][HTML]] or [[https://tecosaur.github.io/emacs-config/config.pdf][PDF]] export.
+
+[[file:misc/screenshots/splash-screen.png]]
+
+=config.org= /generates/ the [[https://tecosaur.github.io/emacs-config/engraved/init.el.html][init.el]], [[https://tecosaur.github.io/emacs-config/engraved/config.el.html][config.el]], and [[https://tecosaur.github.io/emacs-config/engraved/packages.el.html][packages.el]] files, as well as
+about a dozen others.
+
+Other than that, resources are put in [[file:misc/][misc]], and you may find packages I write
+in [[file:lisp/][lisp]].
