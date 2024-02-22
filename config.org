@@ -348,7 +348,6 @@ Emacs is missing just a few packages that I need to make it my OS
 (package! lexic)
 (package! etrace :recipe (:host github :repo "aspiers/etrace"))
 (package! magit-delta)
-(package! wakatime-mode)
 #+end_src
 *** Fun:
 We do a little trolling (and reading)
@@ -369,14 +368,13 @@ Gotta tell Doom who I am.
       user-mail-address "hey@x0ba.lol")
 #+end_src
 ** Fonts
-I prefer SFMono as my monospaced font because it meshes well with the rest of my
-system, but I like Overpass for my sans-serif font because it's a lil quirky.
+The IBM Fonts are very nice.
 #+begin_src emacs-lisp
 ;;fonts
-(setq doom-font (font-spec :family "Iosevka Comfy" :size 15)
-      doom-big-font (font-spec :family "Iosevka Comfy" :size 19)
+(setq doom-font (font-spec :family "Maple Mono" :size 14)
+      doom-big-font (font-spec :family "Maple Mono" :size 20)
       doom-variable-pitch-font (font-spec :family "Overpass" :size 16)
-      doom-unicode-font (font-spec :family "Iosevka Comfy")
+      doom-unicode-font (font-spec :family "Maple Mono")
       doom-serif-font (font-spec :family "Overpass" :size 16 :weight 'medium))
 #+end_src
 For mixed pitch, I would go with something comfier. I like Alegreya Sans for a
@@ -435,13 +433,6 @@ Let's also enable the beautiful fira code programming ligatures
                                      "<~" "<~~" "</" "</>" "~@" "~-" "~>" "~~" "~~>" "%%"))
 
 (global-ligature-mode 't)
-#+end_src
-** Wakatime
-Let's set up wakatime so I can know how much time i wasted editing my emacs
-config
-#+begin_src emacs-lisp
-(global-wakatime-mode)
-(setq wakatime-cli-path "~/.wakatime/wakatime-cli")
 #+end_src
 ** Magit
 Let's use Delta diffs with Magit.
@@ -671,8 +662,8 @@ Now let's add some of my favorite feeds
 ** Shell
 I use the zsh shell. If you use anything else, make sure to change this.
 #+begin_src emacs-lisp
-(setq explicit-shell-file-name (executable-find "zsh")
-      vterm-shell (executable-find "zsh"))
+(setq explicit-shell-file-name (executable-find "fish")
+      vterm-shell (executable-find "fish"))
 #+end_src
 Vterm is my terminal emulator of choice.
 Fixes a weird native-comp bug
@@ -695,24 +686,37 @@ Useful functions for the shell-side integration provided by vterm
             (magit-status path)))))
 #+end_src
 ** Company
-I think company is a bit too quick to recommend some stuff
+It’s nice to have completions almost all the time, in my opinion. Key strokes are just waiting to be saved!
 #+begin_src emacs-lisp
 (after! company
-  (setq company-idle-delay 0.1
-        company-selection-wrap-around t
-        company-require-match 'never
-        company-dabbrev-downcase nil
-        company-dabbrev-ignore-case t
-        company-dabbrev-other-buffers nil
-        company-tooltip-limit 5
-        company-tooltip-minimum-width 40)
-  (set-company-backend!
-    '(text-mode
-      markdown-mode
-      gfm-mode)
-    '(:seperate
-      company-files)))
+  (setq company-idle-delay 0.5
+        company-minimum-prefix-length 2)
+  (setq company-show-numbers t)
+  (add-hook 'evil-normal-state-entry-hook #'company-abort)) ;; make aborting less annoying.
 #+end_src
+Now, the improvements from =precedent= are mostly from remembering history, so let’s improve that memory.
+#+begin_src emacs-lisp
+(setq-default history-length 1000)
+(setq-default prescient-history-length 1000)
+#+end_src
+*** Plain Text
+=Ispell= is nice, let’s have it in =text=, =markdown=, and =GFM=.
+#+begin_src emacs-lisp
+(set-company-backend!
+  '(text-mode
+    markdown-mode
+    gfm-mode)
+  '(:seperate
+    company-ispell
+    company-files
+    company-yasnippet))
+#+end_src
+*** ESS
+=company-dabbrev-code= is nice. Let’s have it.
+#+begin_src emacs-lisp
+(set-company-backend! 'ess-r-mode '(company-R-args company-R-objects company-dabbrev-code :separate))
+#+end_src
+
 ** Better Defaults
 The defaults for emacs aren’t so good nowadays. Let's fix that up a bit.
 
@@ -976,6 +980,7 @@ Doom looks much cleaner with the dividers removed. Not sure why it isn’t the d
   (setq-default default-frame-alist
                 (append (list
                 '(internal-border-width . 24)
+                '(undecorated-round . t)
                 '(left-fringe    . 0)
                 '(right-fringe   . 0)
                 '(tool-bar-lines . 0)
@@ -1384,7 +1389,7 @@ Similar to that, I want to dim surrounding text using the focus package
 ** Theme
 Doom-one is nice and all, but I prefer the vibrant variation
 #+begin_src emacs-lisp
-(setq doom-theme 'doom-tokyo-night)
+(setq doom-theme 'doom-rose-pine)
 #+end_src
 With the nice selection that Doom provides, there's no need for me to want the defaults.
 #+begin_src emacs-lisp
@@ -1409,7 +1414,7 @@ The default size (25) makes for a rather narrow mode line. To me, the modeline
 feels a bit comfier if we give it a bit more space. I find 45 adds roughly a
 third of the line height as padding above and below.
 #+begin_src emacs-lisp
-(setq doom-modeline-height 45)
+(setq doom-modeline-height 35)
 #+end_src
 While we’re modifying the modeline, when we have the default file encoding (=LF
 UTF-8=), it really isn’t worth noting in the modeline. So, why not conditionally

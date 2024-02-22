@@ -2,10 +2,10 @@
       user-mail-address "hey@x0ba.lol")
 
 ;;fonts
-(setq doom-font (font-spec :family "Iosevka Comfy" :size 15)
-      doom-big-font (font-spec :family "Iosevka Comfy" :size 19)
+(setq doom-font (font-spec :family "Maple Mono" :size 14)
+      doom-big-font (font-spec :family "Maple Mono" :size 20)
       doom-variable-pitch-font (font-spec :family "Overpass" :size 16)
-      doom-unicode-font (font-spec :family "Iosevka Comfy")
+      doom-unicode-font (font-spec :family "Maple Mono")
       doom-serif-font (font-spec :family "Overpass" :size 16 :weight 'medium))
 
 ;;mixed pitch modes
@@ -55,9 +55,6 @@ Also immediately enables `mixed-pitch-modes' if currently in one of the modes."
                                      "<~" "<~~" "</" "</>" "~@" "~-" "~>" "~~" "~~>" "%%"))
 
 (global-ligature-mode 't)
-
-(global-wakatime-mode)
-(setq wakatime-cli-path "~/.wakatime/wakatime-cli")
 
 (after! magit
    (magit-delta-mode +1))
@@ -277,8 +274,8 @@ Also immediately enables `mixed-pitch-modes' if currently in one of the modes."
 
 
 
-(setq explicit-shell-file-name (executable-find "zsh")
-      vterm-shell (executable-find "zsh"))
+(setq explicit-shell-file-name (executable-find "fish")
+      vterm-shell (executable-find "fish"))
 
 (setq vterm-always-compile-module t)
 
@@ -292,20 +289,24 @@ Also immediately enables `mixed-pitch-modes' if currently in one of the modes."
             (magit-status path)))))
 
 (after! company
-  (setq company-idle-delay 0.1
-        company-selection-wrap-around t
-        company-require-match 'never
-        company-dabbrev-downcase nil
-        company-dabbrev-ignore-case t
-        company-dabbrev-other-buffers nil
-        company-tooltip-limit 5
-        company-tooltip-minimum-width 40)
-  (set-company-backend!
-    '(text-mode
-      markdown-mode
-      gfm-mode)
-    '(:seperate
-      company-files)))
+  (setq company-idle-delay 0.5
+        company-minimum-prefix-length 2)
+  (setq company-show-numbers t)
+  (add-hook 'evil-normal-state-entry-hook #'company-abort)) ;; make aborting less annoying.
+
+(setq-default history-length 1000)
+(setq-default prescient-history-length 1000)
+
+(set-company-backend!
+  '(text-mode
+    markdown-mode
+    gfm-mode)
+  '(:seperate
+    company-ispell
+    company-files
+    company-yasnippet))
+
+(set-company-backend! 'ess-r-mode '(company-R-args company-R-objects company-dabbrev-code :separate))
 
 (setq scroll-margin 2
       undo-limit 80000000
@@ -493,6 +494,7 @@ Also immediately enables `mixed-pitch-modes' if currently in one of the modes."
   (setq-default default-frame-alist
                 (append (list
                 '(internal-border-width . 24)
+                '(undecorated-round . t)
                 '(left-fringe    . 0)
                 '(right-fringe   . 0)
                 '(tool-bar-lines . 0)
@@ -861,7 +863,7 @@ Also immediately enables `mixed-pitch-modes' if currently in one of the modes."
                       (latex-mode . lsp-folding-range)
                       (python-mode . lsp-folding-range))))
 
-(setq doom-theme 'doom-tokyo-night)
+(setq doom-theme 'doom-rose-pine)
 
 (delq! t custom-theme-load-path)
 
@@ -871,7 +873,7 @@ Also immediately enables `mixed-pitch-modes' if currently in one of the modes."
 (use-package! minions
   :hook (after-init . minions-mode))
 
-(setq doom-modeline-height 45)
+(setq doom-modeline-height 35)
 
 (defun doom-modeline-conditional-buffer-encoding ()
   "We expect the encoding to be LF UTF-8, so only show the modeline when this is not the case"

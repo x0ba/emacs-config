@@ -37,7 +37,6 @@
 (package! lexic)
 (package! etrace :recipe (:host github :repo "aspiers/etrace"))
 (package! magit-delta)
-(package! wakatime-mode)
 
 ;;fun
 (package! nov)
