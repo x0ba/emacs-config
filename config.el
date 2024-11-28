@@ -3,7 +3,7 @@
 (setq user-full-name "Daniel Xu"
       user-mail-address "danielxu0307@proton.me")
 
-(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 14)
+(setq doom-font (font-spec :family "BerkeleyMono Nerd Font" :size 14)
       doom-variable-pitch-font (font-spec :family "Inter" :size 14))
 
 (setq doom-theme 'doom-gruvbox)

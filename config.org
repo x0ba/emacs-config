@@ -37,10 +37,10 @@ Here, I publicize my name and email address. Please don't spam me.
 
 * Appearance
 ** Fonts
-JetBrains Mono/Inter = best combination and I will die on this hill.
+Berkeley Mono/Inter = best combination and I will die on this hill.
 
 #+begin_src emacs-lisp
-(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 14)
+(setq doom-font (font-spec :family "BerkeleyMono Nerd Font" :size 14)
       doom-variable-pitch-font (font-spec :family "Inter" :size 14))
 #+end_src
 
