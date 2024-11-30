@@ -37,11 +37,16 @@ Here, I publicize my name and email address. Please don't spam me.
 
 * Appearance
 ** Fonts
-Berkeley Mono/Inter = best combination and I will die on this hill.
+I use emacs on both my openSUSE Thinkpad and my Macbook Air. I don't use scaling
+on my Thinkpad, so make the font size bigger there.
 
 #+begin_src emacs-lisp
-(setq doom-font (font-spec :family "BerkeleyMono Nerd Font" :size 14)
-      doom-variable-pitch-font (font-spec :family "Inter" :size 14))
+(setq doom-font
+      (font-spec :family "JetBrainsMono Nerd Font"
+                 :size (if (eq system-type 'darwin) 14 17))
+      doom-variable-pitch-font
+      (font-spec :family "Inter"
+                 :size (if (eq system-type 'darwin) 14 17)))
 #+end_src
 
 ** Colors
@@ -128,6 +133,23 @@ Set org directory to my synced Documents folder.
 
 #+begin_src emacs-lisp
 (setq org-directory "~/Documents/notes")
+#+end_src
+
+Set up org-roam ui
+
+#+begin_src emacs-lisp
+(use-package! websocket
+    :after org-roam)
+
+(use-package! org-roam-ui
+    :after org-roam ;; or :after org
+    ;; :hook (after-init . org-roam-ui-mode)
+    :config
+    (setq org-roam-ui-sync-theme t
+          org-roam-ui-follow t
+          org-roam-ui-update-on-save t
+          org-roam-ui-open-on-start t))
+
 #+end_src
 
 * Packages

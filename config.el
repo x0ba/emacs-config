@@ -3,8 +3,12 @@
 (setq user-full-name "Daniel Xu"
       user-mail-address "danielxu0307@proton.me")
 
-(setq doom-font (font-spec :family "BerkeleyMono Nerd Font" :size 14)
-      doom-variable-pitch-font (font-spec :family "Inter" :size 14))
+(setq doom-font
+      (font-spec :family "JetBrainsMono Nerd Font"
+                 :size (if (eq system-type 'darwin) 14 17))
+      doom-variable-pitch-font
+      (font-spec :family "Inter"
+                 :size (if (eq system-type 'darwin) 14 17)))
 
 (setq doom-theme 'doom-gruvbox)
 
@@ -43,5 +47,17 @@
   (consult-buffer))
 
 (setq org-directory "~/Documents/notes")
+
+(use-package! websocket
+    :after org-roam)
+
+(use-package! org-roam-ui
+    :after org-roam ;; or :after org
+    ;; :hook (after-init . org-roam-ui-mode)
+    :config
+    (setq org-roam-ui-sync-theme t
+          org-roam-ui-follow t
+          org-roam-ui-update-on-save t
+          org-roam-ui-open-on-start t))
 
 (setq corfu-auto-delay 0.5)
