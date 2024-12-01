@@ -10,9 +10,10 @@
       (font-spec :family "Inter"
                  :size (if (eq system-type 'darwin) 14 17)))
 
-(setq doom-theme 'doom-gruvbox)
+(setq doom-theme 'doom-nord)
 
-(setq display-line-numbers-type nil)
+;; (setq display-line-numbers-type nil)
+(setq display-line-numbers-type 'relative)
 
 (add-to-list 'default-frame-alist '(inhibit-double-buffering . t))
 
