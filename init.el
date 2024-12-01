@@ -156,7 +156,6 @@
         +dragndrop
         +noter
         +jupyter
-        +pretty
         +pandoc
         +gnuplot
         +present

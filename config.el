@@ -10,7 +10,7 @@
       (font-spec :family "Inter"
                  :size (if (eq system-type 'darwin) 14 17)))
 
-(setq doom-theme 'doom-nord)
+(setq doom-theme 'doom-gruvbox)
 
 ;; (setq display-line-numbers-type nil)
 (setq display-line-numbers-type 'relative)

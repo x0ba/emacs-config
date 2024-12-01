@@ -53,7 +53,7 @@ on my Thinkpad, so make the font size bigger there.
 Doom Vibrant is a lil more vibrant than Doom One. Me likey.
 
 #+begin_src emacs-lisp
-(setq doom-theme 'doom-nord)
+(setq doom-theme 'doom-gruvbox)
 #+end_src
 
 ** Editing Experience
