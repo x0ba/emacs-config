@@ -4,13 +4,13 @@
       user-mail-address "danielxu0307@proton.me")
 
 (setq doom-font
-      (font-spec :family "JetBrainsMono Nerd Font"
+      (font-spec :family "JetBrains Mono"
                  :size (if (eq system-type 'darwin) 14 17))
       doom-variable-pitch-font
       (font-spec :family "Inter"
                  :size (if (eq system-type 'darwin) 14 17)))
 
-(setq doom-theme 'doom-gruvbox)
+(setq doom-theme 'catppuccin)
 
 ;; (setq display-line-numbers-type nil)
 (setq display-line-numbers-type 'relative)

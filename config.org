@@ -42,7 +42,7 @@ on my Thinkpad, so make the font size bigger there.
 
 #+begin_src emacs-lisp
 (setq doom-font
-      (font-spec :family "JetBrainsMono Nerd Font"
+      (font-spec :family "JetBrains Mono"
                  :size (if (eq system-type 'darwin) 14 17))
       doom-variable-pitch-font
       (font-spec :family "Inter"
@@ -53,7 +53,7 @@ on my Thinkpad, so make the font size bigger there.
 Doom Vibrant is a lil more vibrant than Doom One. Me likey.
 
 #+begin_src emacs-lisp
-(setq doom-theme 'doom-gruvbox)
+(setq doom-theme 'catppuccin)
 #+end_src
 
 ** Editing Experience
